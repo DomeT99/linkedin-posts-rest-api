@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     res.send({ message: err.message });
   }
 });
-router.get("/:category", (req, res) => {
+router.get("/category/:category", (req, res) => {
   try {
     let filteredPosts = posts.filter(
       (post) => post.category === req.params.category
@@ -22,9 +22,24 @@ router.get("/:category", (req, res) => {
 
     if (filteredPosts.length === 0) {
       res.send({ message: "No posts found" });
+      return;
     }
 
     res.send(filteredPosts);
+  } catch (err) {
+    res.send({ message: err.message });
+  }
+});
+router.get("/id/:id", (req, res) => {
+  try {
+    let foundPost = posts.find((post) => post.id === req.params.id);
+
+    if (foundPost === undefined) {
+      res.send({ message: "No post found" });
+      return;
+    }
+
+    res.send(foundPost);
   } catch (err) {
     res.send({ message: err.message });
   }
@@ -67,7 +82,7 @@ router.put("/:id", (req, res) => {
     let foundPost = posts.find((post) => post.id === req.params.id);
     let index = posts.indexOf(foundPost);
 
-    if (foundPost == undefined) {
+    if (foundPost === undefined) {
       res.send({ message: "Post not found" });
       return;
     }
