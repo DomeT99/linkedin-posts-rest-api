@@ -1,30 +1,24 @@
 [
   {
-    "id": "4",
-    "url": "https://www.linkedin.com/posts/domenico-tenace_astro-javascript-opensource-activity-7105128247201325057-jMRR?utm_source=share&utm_medium=member_desktop",
-    "title": "Home page is minimal",
-    "category": "projects"
-  },
-  {
-    "id": 1,
+    "id": "1",
     "url": "https://www.linkedin.com/posts/domenico-tenace_astro-javascript-vue-activity-7102591280467066880-f2yf?utm_source=share&utm_medium=member_desktop",
     "title": "Refactoring my website",
-    "category": "projects"
+    "category": "opensource"
   },
   {
-    "id": 2,
+    "id": "2",
     "url": "https://www.linkedin.com/posts/domenico-tenace_astro-javascript-opensource-activity-7105128247201325057-jMRR?utm_source=share&utm_medium=member_desktop",
     "title": "Home page is minimal",
     "category": "projects"
   },
   {
-    "id": 3,
+    "id": "3",
     "url": "https://www.linkedin.com/posts/domenico-tenace_computed-properties-activity-7107279196153901056-mo6v?utm_source=share&utm_medium=member_desktop",
     "title": "Computed properties of Vue",
     "category": "articles"
   },
   {
-    "id": 4,
+    "id": "5",
     "url": "https://www.linkedin.com/posts/domenico-tenace_data-binding-directives-activity-7108361127075491840-JytE?utm_source=share&utm_medium=member_desktop",
     "title": "Vue data binding with Directives",
     "category": "articles"
