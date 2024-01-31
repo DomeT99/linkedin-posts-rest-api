@@ -1,49 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { checkFile, deleteFile, writeFile } = require("../utils/utility");
+const { checkFile, deleteFile, writeFile } = require("../utils/fileSystem");
+const {
+  getAllPosts,
+  getFilteredPosts,
+} = require("../services/linkedinPostService");
 const posts = require("../data/linkedin-posts.json");
 
 //GET
-router.get("/", (req, res) => {
-  try {
-    if (posts.length === 0) {
-      res.send({ message: "No posts found" });
-    }
-    res.send(posts);
-  } catch (err) {
-    res.send({ message: err.message });
-  }
-});
-router.get("/category/:category", (req, res) => {
-  try {
-    let filteredPosts = posts.filter(
-      (post) => post.category === req.params.category
-    );
-
-    if (filteredPosts.length === 0) {
-      res.send({ message: "No posts found" });
-      return;
-    }
-
-    res.send(filteredPosts);
-  } catch (err) {
-    res.send({ message: err.message });
-  }
-});
-router.get("/id/:id", (req, res) => {
-  try {
-    let foundPost = posts.find((post) => post.id === req.params.id);
-
-    if (foundPost === undefined) {
-      res.send({ message: "No post found" });
-      return;
-    }
-
-    res.send(foundPost);
-  } catch (err) {
-    res.send({ message: err.message });
-  }
-});
+router.get("/", (req, res) => getAllPosts(req, res));
+router.get("/category/:category", (req, res) =>
+  getFilteredPosts("category", req, res)
+);
+router.get("/id/:id", (req, res) => getFilteredPosts("id", req, res));
 
 //POST
 router.post("/", (req, res) => {
