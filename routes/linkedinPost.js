@@ -5,14 +5,29 @@ const posts = require("../data/linkedin-posts.json");
 
 //GET
 router.get("/", (req, res) => {
-  res.send(posts);
+  try {
+    if (posts.length === 0) {
+      res.send({ message: "No posts found" });
+    }
+    res.send(posts);
+  } catch (err) {
+    res.send({ message: err.message });
+  }
 });
 router.get("/:category", (req, res) => {
-  let filteredPosts = posts.filter(
-    (post) => post.category === req.params.category
-  );
+  try {
+    let filteredPosts = posts.filter(
+      (post) => post.category === req.params.category
+    );
 
-  res.send(filteredPosts);
+    if (filteredPosts.length === 0) {
+      res.send({ message: "No posts found" });
+    }
+
+    res.send(filteredPosts);
+  } catch (err) {
+    res.send({ message: err.message });
+  }
 });
 
 //POST
@@ -30,7 +45,26 @@ router.post("/", (req, res) => {
     res.send({ message: err.message });
   }
 });
+router.post("/multipleinsert", (req, res) => {
+  try {
+
+    req.body.forEach((post) => posts.push(post));
+
+    if (checkFile("./data/linkedin-posts.json")) {
+      deleteFile("./data/linkedin-posts.json", "File deleted!");
+      writeFile("./data/linkedin-posts.json", JSON.stringify(posts));
+    }
+
+    res.send({ message: "Posts created successfully" });
+  } catch (err) {
+    res.send({ message: err.message });
+  }
+});
+
+//PUT
 router.put("/");
+
+//DELETE
 router.delete("/");
 
 module.exports = router;
