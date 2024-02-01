@@ -1,8 +1,14 @@
 const fs = require("fs");
 
-const checkFile = (path) => fs.existsSync(path);
+const handleFileSystem = (posts, path) => {
+  if (_checkFile(path)) {
+    _deleteFile(path, "File deleted!");
+    _writeFile(path, JSON.stringify(posts));
+  }
+};
 
-const deleteFile = (path, message) =>
+const _checkFile = (path) => fs.existsSync(path);
+const _deleteFile = (path, message) =>
   fs.unlink(path, (err, data) => {
     if (err) {
       throw err;
@@ -10,7 +16,6 @@ const deleteFile = (path, message) =>
       console.log(message);
     }
   });
+const _writeFile = (path, content) => fs.writeFileSync(path, content);
 
-const writeFile = (path, content) => fs.writeFileSync(path, content);
-
-module.exports = { checkFile, deleteFile, writeFile };
+module.exports = { handleFileSystem };

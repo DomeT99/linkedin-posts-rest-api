@@ -4,7 +4,14 @@ const isBlankArray = (arr) => {
   }
   return false;
 };
+const isUndefined = (obj) => {
+  if (obj === undefined) {
+    return true;
+  }
+  return false;
+};
 
 module.exports = {
   isBlankArray,
+  isUndefined,
 };
