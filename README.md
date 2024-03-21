@@ -1,6 +1,6 @@
 # Linkedin Posts Rest Api ⚡️
 
-This is a little CRUD API project build with Node.js and Express for handling my Linkedin posts 😎
+This is a simple CRUD API project build with Node.js and Express for handling my Linkedin posts 😎
 
 ## 🔗 Links
 
